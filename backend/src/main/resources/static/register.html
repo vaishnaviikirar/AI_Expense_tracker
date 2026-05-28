@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="auth-page">
+
+    <div class="auth-split">
+        <!-- LEFT PANEL - Branding -->
+        <div class="auth-brand-panel">
+            <div class="brand-content">
+                <div class="brand-logo">
+                    <span class="logo-icon">₹</span>
+                </div>
+                <h1 class="brand-headline">Your Money,<br>Your Story.</h1>
+                <p class="brand-sub">Join thousands who use AI-powered insights to make smarter financial decisions every day.</p>
+                <div class="brand-stats">
+                    <div class="stat-pill">
+                        <span class="stat-num">🔒</span>
+                        <span class="stat-label">BCrypt Secured</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="stat-num">🤖</span>
+                        <span class="stat-label">AI Advisor</span>
+                    </div>
+                    <div class="stat-pill">
+                        <span class="stat-num">📊</span>
+                        <span class="stat-label">Analytics</span>
+                    </div>
+                </div>
+            </div>
+            <div class="brand-decor">
+                <div class="circle c1"></div>
+                <div class="circle c2"></div>
+                <div class="circle c3"></div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL - Form -->
+        <div class="auth-form-panel">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Create account</h2>
+                    <p>Start tracking your expenses today</p>
+                </div>
+
+                <div id="errorAlert" class="alert alert-error" style="display:none;"></div>
+                <div id="successAlert" class="alert alert-success" style="display:none;"></div>
+
+                <form id="registerForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="John Doe"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="you@example.com"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="At least 6 characters"
+                            required
+                            minlength="6"
+                        />
+                    </div>
+
+                    <button type="submit" class="btn-primary" id="registerBtn">
+                        <span class="btn-text">Create Account</span>
+                        <span class="btn-loader" style="display:none;">Creating account...</span>
+                    </button>
+                </form>
+
+                <p class="auth-switch">
+                    Already have an account?
+                    <a href="login.html" class="auth-link">Sign in →</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>
