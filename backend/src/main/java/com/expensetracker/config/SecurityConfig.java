@@ -72,20 +72,19 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
 
                         // Public frontend pages
-                        .requestMatchers(
-                                "/",
-                                "/index.html",
-                                "/login.html",
-                                "/register.html",
-                                "/dashboard.html",
-                                "/auth.js",
-                                "/dashboard.js",
-                                "/styles.css",
-                                "/css/**",
-                                "/js/**",
-                                "/images/**"
-                        ).permitAll()
-
+//                        .requestMatchers(
+//                                "/",
+//                                "/index.html",
+//                                "/login.html",
+//                                "/register.html",
+//                                "/dashboard.html",
+//                                "/auth.js",
+//                                "/dashboard.js",
+//                                "/styles.css",
+//                                "/css/**",
+//                                "/js/**",
+//                                "/images/**"
+//                        ).permitAll()
                         // Everything else requires JWT
                         .anyRequest().authenticated()
                 )

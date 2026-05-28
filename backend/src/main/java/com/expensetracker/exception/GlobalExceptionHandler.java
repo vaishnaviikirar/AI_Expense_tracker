@@ -102,6 +102,15 @@ public class GlobalExceptionHandler {
                 .body(buildError(401, "Invalid email or password"));
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Map<String, Object>> handleRuntimeException(
+            RuntimeException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(buildError(400, ex.getMessage()));
+    }
+
     /**
      * Handle any other unexpected exceptions (500)
      * Acts as a safety net so we never leak stack traces to the client.

@@ -3,6 +3,7 @@ package com.expensetracker.controller;
 import com.expensetracker.dto.AuthResponse;
 import com.expensetracker.dto.LoginRequest;
 import com.expensetracker.dto.RegisterRequest;
+import com.expensetracker.repository.UserRepository;
 import com.expensetracker.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
     private final AuthService authService;
+    private final UserRepository userRepository;
 
     /**
      * Register a new user.
@@ -42,9 +44,15 @@ public class AuthController {
      */
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegisterRequest request) {
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new RuntimeException(
+                    "Email is already registered. Please login."
+            );
+        }
         AuthResponse response = authService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
 
     /**
      * Login an existing user.
