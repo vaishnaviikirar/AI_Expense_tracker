@@ -1,4 +1,4 @@
-# 💰 SpendWise — AI Expense Tracker & Budget Advisor
+# 💰AI Expense Tracker & Budget Advisor
 
 A full-stack expense tracking application with JWT authentication and OpenAI-powered budget advice.
 
@@ -54,15 +54,14 @@ expense-tracker/
 │       │       └── GlobalExceptionHandler.java
 │       │
 │       └── resources/
+            └── static/
+                └── ├── login.html
+│                   ├── register.html
+│                   ├── dashboard.html
+│                   ├── styles.css
+│                   ├── auth.js
+│                   └── dashboard.js
 │           └── application.properties
-│
-├── frontend/                         ← HTML/CSS/JS
-│   ├── login.html
-│   ├── register.html
-│   ├── dashboard.html
-│   ├── styles.css
-│   ├── auth.js
-│   └── dashboard.js
 │
 ├── schema.sql                        ← MySQL database setup
 └── README.md
@@ -117,7 +116,7 @@ openai.api.key=sk-proj-xxxxxxxxxxxxxxxx
 **How to generate a proper JWT secret:**
 ```bash
 # Linux/Mac:
-echo -n "SpendWise-Super-Secret-JWT-Key-2024-Must-Be-256-bits" | base64
+echo -n "Super-Secret-JWT-Key-2024-Must-Be-256-bits" | base64
 
 # Windows (PowerShell):
 [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("SpendWise-Super-Secret-JWT-Key-2024"))
