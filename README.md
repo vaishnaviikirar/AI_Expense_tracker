@@ -115,22 +115,19 @@ openai.api.key=sk-proj-xxxxxxxxxxxxxxxx
 
 **How to generate a proper JWT secret:**
 ```bash
-# Linux/Mac:
+
 echo -n "Super-Secret-JWT-Key-2024-Must-Be-256-bits" | base64
 
 # Windows (PowerShell):
 [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("SpendWise-Super-Secret-JWT-Key-2024"))
-```
 
 ---
 
 ### Step 3: Build and Run Backend
 
-```bash
+```
+bash
 cd expense-tracker/backend
-
-# Build (skipping tests for first run)
-mvn clean install -DskipTests
 
 # Run the application
 mvn spring-boot:run
@@ -145,23 +142,15 @@ You should see: `Started ExpenseTrackerApplication on port 8080`
 No build step needed! Simply open the HTML files in a browser.
 
 **Option A - Open directly:**
-```bash
+```
+bash
 # Just open login.html in your browser
-open frontend/login.html   # Mac
-start frontend/login.html  # Windows
 ```
 
-**Option B - Use VS Code Live Server (recommended):**
-1. Install "Live Server" extension in VS Code
-2. Right-click `login.html` → "Open with Live Server"
-3. Opens at http://localhost:5500/login.html
-
-**Option C - Simple Python server:**
-```bash
-cd frontend
-python -m http.server 3000
-# Visit http://localhost:3000/login.html
-```
+Option B - Use VS Code Live Server (recommended):**
+1. Right-click `login.html` → "Open with Live Server"
+                OR
+3. Opens at http://localhost:8080/login.html
 
 ---
 
@@ -334,21 +323,6 @@ Return AiSuggestionResponse { suggestion: "..." }
 Frontend displays in scrollable AI container
 ```
 
----
-
-## 📡 API Endpoints
-
-| Method | Endpoint                      | Auth Required | Description                |
-|--------|-------------------------------|:-------------:|----------------------------|
-| POST   | /api/auth/register            | ❌ No         | Register new user          |
-| POST   | /api/auth/login               | ❌ No         | Login, returns JWT token   |
-| POST   | /api/expenses                 | ✅ Yes        | Add a new expense          |
-| GET    | /api/expenses                 | ✅ Yes        | Get all user expenses      |
-| DELETE | /api/expenses/{id}            | ✅ Yes        | Delete an expense          |
-| GET    | /api/expenses/ai-suggestion   | ✅ Yes        | Get AI budget advice       |
-
-### Example Requests
-
 **Register:**
 ```json
 POST /api/auth/register
@@ -443,19 +417,11 @@ users (1) ──────────────────── (M) expen
 - Always use the register endpoint (it hashes automatically)
 
 ---
+<img width="1919" height="926" alt="Screenshot 2026-05-31 174911" src="https://github.com/user-attachments/assets/bd0d22e5-efcc-4609-8ebd-74c60c069bf2" />
+<img width="1907" height="923" alt="Screenshot 2026-05-31 175009" src="https://github.com/user-attachments/assets/1fe6f528-5365-4b90-b52e-6cdb91d10e76" />
+<img width="1085" height="909" alt="Screenshot 2026-05-31 175113" src="https://github.com/user-attachments/assets/f799f0bd-bfe8-4131-a9e0-cd2404d25edb" />
+<img width="1034" height="916" alt="Screenshot 2026-05-31 175058" src="https://github.com/user-attachments/assets/ec35db0d-8b08-4efb-92d1-72350e865e3e" />
 
-## 💡 Key Learning Points (For Interviews)
 
-1. **Why JWT over Sessions?** JWT is stateless — no server-side storage needed. Each request carries authentication info.
-
-2. **Why BCrypt?** One-way hash with salt. Can't reverse. Slow by design (prevents brute force).
-
-3. **Why DTOs?** Never expose entities directly. Control what data reaches clients. Prevent over-fetching.
-
-4. **Why @RestControllerAdvice?** Centralized exception handling. Consistent error format. Separation of concerns.
-
-5. **Why JPA over raw SQL?** Type safety, auto-generated queries, database portability, reduced boilerplate.
-
-6. **OneToMany vs ManyToOne?** User (1) → Expenses (M). `@ManyToOne` in Expense owns the relationship (has FK column).
 
 7. **CORS?** Browsers block cross-origin requests by default. Backend must explicitly allow them.
