@@ -1,6 +1,6 @@
 # 💰AI Expense Tracker & Budget Advisor
 
-A full-stack expense tracking application with JWT authentication and OpenAI-powered budget advice.
+A full-stack expense tracking application with JWT authentication and LlamaAI-powered budget advice.
 
 ---
 
@@ -34,7 +34,7 @@ expense-tracker/
 │       │   ├── service/              ← Business logic layer
 │       │   │   ├── AuthService.java
 │       │   │   ├── ExpenseService.java
-│       │   │   └── OpenAIService.java
+│       │   │   └── LlamaAIService.java
 │       │   │
 │       │   ├── controller/           ← REST API endpoints
 │       │   │   ├── AuthController.java
@@ -75,7 +75,7 @@ expense-tracker/
 - Java 17+
 - Maven 3.8+
 - MySQL 8.0+
-- OpenAI API key (get from https://platform.openai.com)
+- Llama API key (get from https://platform.Llamaapi.com)
 
 ---
 
@@ -109,8 +109,8 @@ spring.datasource.password=YOUR_MYSQL_PASSWORD
 # Run in terminal: echo -n "your-super-secret-key-must-be-very-long" | base64
 app.jwt.secret=eW91ci1zdXBlci1zZWNyZXQta2V5LW11c3QtYmUtdmVyeS1sb25n
 
-# Your OpenAI API key
-openai.api.key=sk-proj-xxxxxxxxxxxxxxxx
+# Your Llama API key
+llama.api.key=sk-proj-xxxxxxxxxxxxxxxx
 ```
 
 **How to generate a proper JWT secret:**
@@ -297,20 +297,20 @@ ExpenseService.getCategoryWiseSummary()
     │  Returns: "Food: ₹4500.00, Travel: ₹2000.00, ..."
     │
     ▼
-OpenAIService.generateBudgetAdvice(summary)
+LlamaAIService.generateBudgetAdvice(summary)
     │
     │  Builds prompt:
     │  "Analyze my expenses: Food: ₹4500, Travel: ₹2000...
     │   Please provide: 1) Spending analysis 2) Areas of concern..."
     │
     ▼
-HTTP POST to OpenAI API
-    │  https://api.openai.com/v1/chat/completions
+HTTP POST to LlamaAI API
+    │  https://api.llamaapi.com/v1/chat/completions
     │  Headers: Authorization: Bearer sk-proj-xxx
     │  Body: { model: "gpt-3.5-turbo", messages: [...] }
     │
     ▼
-OpenAI returns response
+LlamaAI returns response
     │  { choices: [{ message: { content: "📊 SPENDING ANALYSIS: ..." } }] }
     │
     ▼
@@ -404,8 +404,8 @@ users (1) ──────────────────── (M) expen
 - Try clearing localStorage and logging in again
 
 **"AI service unavailable"**
-- Check your OpenAI API key in application.properties
-- Make sure the key has available credits at platform.openai.com
+- Check your Llama API key in application.properties
+- Make sure the key has available credits at platform.llama.com
 
 **MySQL connection refused**
 - Make sure MySQL service is running
